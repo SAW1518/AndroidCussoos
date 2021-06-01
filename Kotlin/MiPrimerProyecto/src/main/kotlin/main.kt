@@ -167,5 +167,74 @@ fun main(args: Array<String>) {
     println(ageHeroMutable.keys)
     println(ageHeroMutable.values)*/
 
+    /*var vocalesRepit = setOf("a ","e","i","o")
+    println(vocalesRepit)
+    val numbers = mutableSetOf(1,2,3,4)
+    numbers.add(5)
+    println(numbers)
+    numbers.remove(2)
+    println(numbers)
+
+   /* val numberOfSet: Int? = numbers.firstOrNull { n -> n > 2 }
+    println(numberOfSet)*/
+    val phrasesRandom = "Quiero regrezar a movil"
+    printPhrases(phrasesRandom.randomCase())
+*/
+    /*
+    printName(name = "kike", lastName = "lopez")
+     */
+    /*
+       val myLambda: (String) -> Int = { value ->
+           value.length
+       }
+       val lengthMyLambda: Int =  myLambda("kike")
+       println(lengthMyLambda)
+
+       val  regards = listOf("Hello","Hola" , "Ciao")
+
+       val lengthRegards =  regards.map(myLambda)
+       println(lengthRegards)
+
+   */
+    val lengthValInitial = superFunction(valInitial = "Hi!") { value ->
+        value.length
+    }
+    println(lengthValInitial)
+
+    val lambda: () -> String = functionInception("Kike")
+    val lambdaValue: String = lambda()
+
+    println(lambdaValue)
+}
+
+fun superFunction(valInitial: String, block: (String) -> Int): Int {
+    return block(valInitial)
+}
+
+fun functionInception(name: String): () -> String {
+    return {
+        "Hi in lambda $name"
+    }
+}
+
+
+/*
+fun printName(name: String, secondName: String = "", lastName: String) {
+    println("Mi Name is $name , and my lstName is $lastName and $secondName")
+}
+*/
+/*
+fun String.randomCase(): String {
+    val number = 0..99
+    val resultRandom = number.random()
+    return if (resultRandom.rem(2) != 0) {
+        this.toLowerCase()
+    } else {
+        this.toUpperCase()
+    }
 
 }
+
+fun printPhrases(phrases: String): Unit {
+    println("Tu frase es $phrases")
+}*/
