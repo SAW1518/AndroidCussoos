@@ -1,4 +1,24 @@
 ///const val PI = 3.1419
+
+
+// Declaramos los valores de nuestras respuestas
+const val RESPUESTA_AFIRMATIVA = "✅"
+const val RESPUESTA_NEGATIVA = "❌"
+const val RESPUESTA_DUDOSA = "\uD83E\uDD14"
+val respuestas = mapOf(
+    "Sí" to RESPUESTA_AFIRMATIVA,
+    "Es cierto" to RESPUESTA_AFIRMATIVA,
+    "Totalmente" to RESPUESTA_AFIRMATIVA,
+    "Sin duda" to RESPUESTA_AFIRMATIVA,
+    "Pregunta en otro momento" to RESPUESTA_DUDOSA,
+    "No puedo decirte en este momento" to RESPUESTA_DUDOSA,
+    "Puede que si o puede que no" to RESPUESTA_DUDOSA,
+    "No va a suceder" to RESPUESTA_NEGATIVA,
+    "No cuentes con ello" to RESPUESTA_NEGATIVA,
+    "Definitivamente no" to RESPUESTA_NEGATIVA,
+    "No lo creo" to RESPUESTA_NEGATIVA,
+)
+
 fun main(args: Array<String>) {
     /*println("Hello World!")
     var money = 10
@@ -67,7 +87,7 @@ fun main(args: Array<String>) {
         println("Generating random number")
         val number = (0..100).random()
         println("number random.....$number")
-    } while (number > 50)*/
+    } while (number > 50)
     /* val listFruit = listOf("Apple", "Pear", "Peach", "Mango")
      for (fruit in listFruit) println("eat $fruit")
      listFruit.forEach { fruit -> println("forEach eat $fruit") }
@@ -141,9 +161,9 @@ fun main(args: Array<String>) {
     println(sortedReverse)
     println(numbersMap)
     println(numbersFilter)
-*/
 
-/*
+
+
     //NOT mutable
     val ageHero = mapOf(
         "IronMan" to 35,
@@ -175,15 +195,13 @@ fun main(args: Array<String>) {
     numbers.remove(2)
     println(numbers)
 
-   /* val numberOfSet: Int? = numbers.firstOrNull { n -> n > 2 }
-    println(numberOfSet)*/
+  val numberOfSet: Int? = numbers.firstOrNull { n -> n > 2 }
+    println(numberOfSet)
     val phrasesRandom = "Quiero regrezar a movil"
     printPhrases(phrasesRandom.randomCase())
-*/
-    /*
+
     printName(name = "kike", lastName = "lopez")
-     */
-    /*
+
        val myLambda: (String) -> Int = { value ->
            value.length
        }
@@ -195,7 +213,6 @@ fun main(args: Array<String>) {
        val lengthRegards =  regards.map(myLambda)
        println(lengthRegards)
 
-   */
     val lengthValInitial = superFunction(valInitial = "Hi!") { value ->
         value.length
     }
@@ -204,19 +221,121 @@ fun main(args: Array<String>) {
     val lambda: () -> String = functionInception("Kike")
     val lambdaValue: String = lambda()
 
-    println(lambdaValue)
+    println(lambdaValue)*/
+
+//    var name : String? = null
+//    name?.let{ value->
+//        println("name in not bnul is $value")
+//    }
+
+//    name = "kike"
+//    name?.let{ value->
+//        println("name in not bnul is $value")
+//    }
+
+//    val colors = listOf("blue", "red", "yellow")
+//    with(colors){
+//        println("COLORS $this")
+//        println("size $size")
+//    }
+
+//    val moviles = mutableListOf("google", "Apple", "Xiaomi").run {
+//        removeIf { moil -> moil.contains("google") }
+//        this
+//    }
+//    println(moviles)
+
+//    val moviles = mutableListOf("google", "Apple", "Xiaomi").apply {
+//        removeIf { moil -> moil.contains("google") }
+//    }
+//    println(moviles)
+//
+//    val colors : MutableList<String>? = mutableListOf("blue", "red", "yellow")
+//
+//    colors?.apply {
+//        println("This colors $this")
+//        println("size colors $size")
+//    }
+
+//    val moviles = mutableListOf("google", "Apple", "Xiaomi").also { value ->
+//        println("the value is $value")
+//    }.asReversed()
+//    println(moviles)
+
+
 }
 
-fun superFunction(valInitial: String, block: (String) -> Int): Int {
-    return block(valInitial)
-}
+//fun superFunction(valInitial: String, block: (String) -> Int): Int {
+//    return block(valInitial)
+//}
+//
+//fun functionInception(name: String): () -> String {
+//    return {
+//        "Hi in lambda $name"
+//    }
+//} */
 
-fun functionInception(name: String): () -> String {
-    return {
-        "Hi in lambda $name"
+
+    println("Program Name")
+    println("1 ?")
+    println("2 resp")
+    println("3 end")
+
+    when (readLine()) {
+        "1" -> realizarPregunta()
+        "2" -> showResp()
+        "3" -> endP()
+        else -> InputError()
     }
 }
 
+fun endP() {
+    println("adios")
+}
+
+fun InputError() {
+    println("Tonto")
+}
+
+fun showResp() {
+    println("OP ?")
+    println("1 respuestas")
+    println("2 respuestas adimativas")
+    println("3 respuestas ratas")
+    println("4 respuestas nagativas")
+
+    when (readLine()) {
+        "1" -> realizarPreguntaPortipo()
+        "2" -> realizarPreguntaPortipo(res = RESPUESTA_AFIRMATIVA)
+        "3" -> realizarPreguntaPortipo(res = RESPUESTA_NEGATIVA)
+        "4" -> realizarPreguntaPortipo(res = RESPUESTA_DUDOSA)
+        else -> endP()
+    }
+
+}
+
+fun realizarPreguntaPortipo(res: String = "TODOS") {
+
+    val getResponse : (Map<String, String>) -> Unit = {
+            responses -> responses.keys.forEach { resp -> println(resp) }
+    }
+
+    when (res) {
+        "TODOS" -> respuestas.keys.forEach { resp -> println(resp) }
+        RESPUESTA_AFIRMATIVA -> respuestas.filterValues { resp -> resp == RESPUESTA_AFIRMATIVA }
+            .also { getResponse }
+        RESPUESTA_NEGATIVA -> respuestas.filterValues { resp -> resp == RESPUESTA_NEGATIVA }
+            .also { getResponse }
+        RESPUESTA_DUDOSA -> respuestas.filterValues { resp -> resp == RESPUESTA_DUDOSA }
+            .also { getResponse}
+    }
+}
+
+fun realizarPregunta() {
+    println("Pregunta ?")
+    readLine()
+    println(respuestas.keys.random())
+}
 
 /*
 fun printName(name: String, secondName: String = "", lastName: String) {
